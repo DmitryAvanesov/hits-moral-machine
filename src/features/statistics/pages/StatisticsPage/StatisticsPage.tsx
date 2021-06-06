@@ -50,7 +50,7 @@ export const StatisticsPage = () => {
     }, [fromDate, toDate])
 
     return (
-        <div>
+        <div className="container">
             <section className="title">
                 <Typography variant="h2" component="h2">
                     Статистика
