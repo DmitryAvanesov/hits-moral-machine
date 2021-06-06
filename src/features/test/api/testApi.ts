@@ -1,4 +1,3 @@
-import { Answer } from "../interfaces/answer";
 import { Test } from "../interfaces/test";
 
 export const testApi = {
@@ -9,12 +8,15 @@ export const testApi = {
 
     return test.json();
   },
-  async pushAnswers(answers: Answer[]): Promise<any> {
-    const res = await fetch(`${process.env.REACT_APP_API}/test`, {
+  async pushAnswers(answers: string[]): Promise<boolean> {
+    const res = await fetch(`${process.env.REACT_APP_API}/answers`, {
       method: "POST",
       body: JSON.stringify(answers),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
-    return res.json();
+    return res.ok;
   },
 };

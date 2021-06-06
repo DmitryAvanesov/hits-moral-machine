@@ -10,8 +10,12 @@ import { Solution } from "../interfaces/solution";
 
 const useStyles = makeStyles({
   root: {
-    width: "350px",
+    width: "40%",
     cursor: "pointer",
+    marginBottom: "24px",
+    ["@media (max-width: 550px)"]: {
+      width: "100%",
+    },
   },
   media: {
     height: "200px",

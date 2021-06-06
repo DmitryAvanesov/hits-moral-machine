@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { testApi } from "../api/testApi";
 import { DilemmaBlock } from "../components/Dilemma";
 import { SolutionCard } from "../components/SolutionCard";
-import { Answer } from "../interfaces/answer";
 import { Solution } from "../interfaces/solution";
 import {
   selectDilemmas,
@@ -17,10 +17,15 @@ const useStyles = makeStyles({
     margin: "0 auto",
     width: "75%",
     padding: "64px 0",
+    ["@media (max-width: 992px)"]: {
+      width: "95%",
+      padding: "32px 0",
+    },
   },
   solutions: {
     display: "flex",
     justifyContent: "space-evenly",
+    flexWrap: "wrap",
   },
 });
 
@@ -32,7 +37,7 @@ export const TestPage = (): JSX.Element => {
   const solutions = useAppSelector(selectSolutions);
 
   const [currentDilemma, setCurrentDilemma] = useState<number>(0);
-  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [answers, setAnswers] = useState<string[]>([]);
 
   const solutionError: Solution = {
     id: "",
@@ -45,8 +50,24 @@ export const TestPage = (): JSX.Element => {
     dispatch(fetchTest());
   }, []);
 
+  useEffect(() => {
+    const pushAnswers = async () => {
+      const response = await testApi.pushAnswers(answers);
+
+      if (!response) {
+        alert(
+          "Возникла ошибка при отправке ответов. Пожалуйста, пройдите тест заново."
+        );
+      }
+    };
+
+    if (currentDilemma && currentDilemma === dilemmas.length) {
+      pushAnswers();
+    }
+  }, [currentDilemma]);
+
   const handleSolutionCardClick = (solutionId: string) => {
-    setAnswers([...answers, { id: "", solutionId, createDate: new Date() }]);
+    setAnswers([...answers, solutionId]);
     setCurrentDilemma(currentDilemma + 1);
   };
 
