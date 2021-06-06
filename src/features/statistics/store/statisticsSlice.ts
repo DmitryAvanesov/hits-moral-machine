@@ -18,13 +18,13 @@ export const initialState: StatisticsState = {
 }
 
 export const fetchStatistics = createAsyncThunk(
-    'statistics/fetchStatistics',
-    async () => {
-        const response = await statisticsApi.fetchStatistics();
+  "statistics/fetchStatistics",
+  async () => {
+    const response = await statisticsApi.fetchStatistics();
 
-        return response;
-    }
-)
+    return response;
+  }
+);
 
 export const statisticsSlice = createSlice({
     name: 'statistics',
@@ -44,7 +44,9 @@ export const statisticsSlice = createSlice({
             })
             .addCase(fetchStatistics.fulfilled, (state, {payload}) => {
                 state.statsLoading = false;
-                state.stats = payload;
+                state.stats = payload.map(el => ({
+                    ...el, date: (new Date(el.date)).toLocaleDateString()
+                }));
             })
     }
 });

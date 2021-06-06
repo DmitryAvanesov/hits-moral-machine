@@ -9,13 +9,15 @@ interface StatsChartState {
 
 export const StatsChart: FC<StatsChartState> = (props) => {
 
-    const [chartData, setChartData] = useState<ChartData>({
+    const initialChartData: ChartData = {
         labels: [],
         datasets: [{
-            label: '123',
+            label: 'Rates',
             data: [],
         }],
-    });
+    };
+
+    const [chartData, setChartData] = useState<ChartData>(initialChartData);
     const options: ChartOptions = {
         scales: {
             y: {
@@ -30,10 +32,11 @@ export const StatsChart: FC<StatsChartState> = (props) => {
     }, [props.data]);
 
     const transformChartData = () => {
-        const tempChartData = {...chartData};
+        const tempChartData = {...initialChartData};
+        console.log(tempChartData)
         props.data.forEach((el) => {
           tempChartData.labels?.push(el.date);
-          tempChartData.datasets[0].data.push(el.value);
+          tempChartData.datasets[0].data.push(el.rate);
         });
         setChartData(tempChartData);
     }
