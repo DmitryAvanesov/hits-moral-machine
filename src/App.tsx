@@ -7,7 +7,7 @@ import {
     Route,
 } from "react-router-dom";
 import {StatisticsPage} from "./features/statistics/pages/StatisticsPage/StatisticsPage";
-import {Home} from "./features/statistics/pages/Home/Home";
+import {Home} from "./features/home/page/Home/Home";
 
 function App() {
     return (
