@@ -1,10 +1,12 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import statisticsReducer from '../features/statistics/store/statisticsSlice';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import counterReducer from "../features/counter/counterSlice";
+import testReducer from "../features/test/store/testSlice";
+import statisticsReducer from "../features/statistics/store/statisticsSlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    test: testReducer,
     statistics: statisticsReducer,
   },
 });
