@@ -5,6 +5,7 @@ export const testApi = {
     const test = await fetch(`${process.env.REACT_APP_API}/test`, {
       method: "GET",
     });
+
     return test.json();
   },
 };
