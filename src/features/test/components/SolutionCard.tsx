@@ -14,23 +14,26 @@ const useStyles = makeStyles({
     cursor: "pointer",
   },
   media: {
-    height: "150px",
+    height: "200px",
   },
 });
 
-export const SolutionCard = (props: { solution: Solution }): JSX.Element => {
+export const SolutionCard = (props: {
+  solution: Solution;
+  handleClick: () => void;
+}): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={props.handleClick}>
       <CardMedia
         className={classes.media}
-        image="http://m.colta.ru/storage/post/1349/detailed_picture.jpg"
+        image="https://image.freepik.com/free-photo/doctor-with-syringe-injection-in-hospital-professional-medicine-health-clinic-practitioner_92397-789.jpg"
         title="Contemplative Reptile"
       />
       <CardContent>
         <Typography variant="body1">
-          {props.solution?.text} Нужно спасти женщину, так как она уже является
+          {props.solution?.text}: Нужно спасти женщину, так как она уже является
           членом общества, у которого есть социальные связи, близкие люди.
           Общество получит большую пользу от ее спасения.
         </Typography>

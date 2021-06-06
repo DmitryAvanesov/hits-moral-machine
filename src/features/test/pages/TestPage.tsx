@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { DilemmaBlock } from "../components/Dilemma";
 import { SolutionCard } from "../components/SolutionCard";
-import { Dilemma } from "../interfaces/dilemma";
 import { Solution } from "../interfaces/solution";
 import {
   selectDilemmas,
@@ -14,10 +14,12 @@ import { fetchTest } from "../store/testSlice";
 const useStyles = makeStyles({
   root: {
     margin: "0 auto",
-    width: "90%",
+    width: "75%",
     padding: "64px 0",
+  },
+  solutions: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
   },
 });
 
@@ -28,7 +30,7 @@ export const TestPage = (): JSX.Element => {
   const dilemmas = useAppSelector(selectDilemmas);
   const solutions = useAppSelector(selectSolutions);
 
-  const [currentDilemma, setCurrentDilemma] = useState<Dilemma>();
+  const [currentDilemma, setCurrentDilemma] = useState<number>(0);
 
   const solutionError: Solution = {
     id: "",
@@ -41,9 +43,9 @@ export const TestPage = (): JSX.Element => {
     dispatch(fetchTest());
   }, []);
 
-  useEffect(() => {
-    setCurrentDilemma(dilemmas[0]);
-  }, [dilemmas]);
+  const handleSolutionCardClick = () => {
+    setCurrentDilemma(currentDilemma + 1);
+  };
 
   return (
     <div className={classes.root}>
@@ -51,22 +53,32 @@ export const TestPage = (): JSX.Element => {
         <div>Загрузка...</div>
       ) : (
         <>
-          <SolutionCard
-            solution={
-              solutions.find(
-                (solution) => solution.dilemmaId === currentDilemma?.id
-              ) || solutionError
-            }
-          />
-          <SolutionCard
-            solution={
-              [...solutions]
-                .reverse()
-                .find(
-                  (solution) => solution.dilemmaId === currentDilemma?.id
+          <DilemmaBlock
+            dilemmas={dilemmas}
+            currentDilemma={currentDilemma}
+          ></DilemmaBlock>
+          <div className={classes.solutions}>
+            <SolutionCard
+              solution={
+                solutions.find(
+                  (solution) =>
+                    solution.dilemmaId === dilemmas[currentDilemma].id
                 ) || solutionError
-            }
-          />
+              }
+              handleClick={handleSolutionCardClick}
+            />
+            <SolutionCard
+              solution={
+                [...solutions]
+                  .reverse()
+                  .find(
+                    (solution) =>
+                      solution.dilemmaId === dilemmas[currentDilemma].id
+                  ) || solutionError
+              }
+              handleClick={handleSolutionCardClick}
+            />
+          </div>
         </>
       )}
     </div>
