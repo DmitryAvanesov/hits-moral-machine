@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { DilemmaBlock } from "../components/Dilemma";
 import { SolutionCard } from "../components/SolutionCard";
+import { Answer } from "../interfaces/answer";
 import { Solution } from "../interfaces/solution";
 import {
   selectDilemmas,
@@ -31,6 +32,7 @@ export const TestPage = (): JSX.Element => {
   const solutions = useAppSelector(selectSolutions);
 
   const [currentDilemma, setCurrentDilemma] = useState<number>(0);
+  const [answers, setAnswers] = useState<Answer[]>([]);
 
   const solutionError: Solution = {
     id: "",
@@ -43,7 +45,8 @@ export const TestPage = (): JSX.Element => {
     dispatch(fetchTest());
   }, []);
 
-  const handleSolutionCardClick = () => {
+  const handleSolutionCardClick = (solutionId: string) => {
+    setAnswers([...answers, { id: "", solutionId, createDate: new Date() }]);
     setCurrentDilemma(currentDilemma + 1);
   };
 
@@ -57,28 +60,32 @@ export const TestPage = (): JSX.Element => {
             dilemmas={dilemmas}
             currentDilemma={currentDilemma}
           ></DilemmaBlock>
-          <div className={classes.solutions}>
-            <SolutionCard
-              solution={
-                solutions.find(
-                  (solution) =>
-                    solution.dilemmaId === dilemmas[currentDilemma].id
-                ) || solutionError
-              }
-              handleClick={handleSolutionCardClick}
-            />
-            <SolutionCard
-              solution={
-                [...solutions]
-                  .reverse()
-                  .find(
+          {currentDilemma < dilemmas.length ? (
+            <div className={classes.solutions}>
+              <SolutionCard
+                solution={
+                  solutions.find(
                     (solution) =>
                       solution.dilemmaId === dilemmas[currentDilemma].id
                   ) || solutionError
-              }
-              handleClick={handleSolutionCardClick}
-            />
-          </div>
+                }
+                handleClick={handleSolutionCardClick}
+              />
+              <SolutionCard
+                solution={
+                  [...solutions]
+                    .reverse()
+                    .find(
+                      (solution) =>
+                        solution.dilemmaId === dilemmas[currentDilemma].id
+                    ) || solutionError
+                }
+                handleClick={handleSolutionCardClick}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </>
       )}
     </div>

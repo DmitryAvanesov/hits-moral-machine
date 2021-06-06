@@ -54,10 +54,8 @@ export const DilemmaBlock = (props: {
         </Box>
       </Box>
       <Typography variant="h6">
-        {props.dilemmas[props.currentDilemma]?.text}: Вы - врач-акушер,
-        принимаете роды. Женщина находится в критическом состоянии, но ее еще
-        можно спасти, однако ребенок умрет. Если вы решите спасти ребенка, то
-        умрет женщина. Какой вариант вы выберите?
+        {props.dilemmas[props.currentDilemma]?.text ||
+          "Благодарим за прохождение теста"}
       </Typography>
     </div>
   );

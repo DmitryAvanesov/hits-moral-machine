@@ -1,17 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { testApi } from "../api/testApi";
+import { Answer } from "../interfaces/answer";
 import { Dilemma } from "../interfaces/dilemma";
 import { Solution } from "../interfaces/solution";
 
 export interface TestState {
   dilemmas: Dilemma[];
   solutions: Solution[];
+  answers: Answer[];
   testLoading: boolean;
 }
 
 export const initialState: TestState = {
   dilemmas: [],
   solutions: [],
+  answers: [],
   testLoading: false,
 };
 
