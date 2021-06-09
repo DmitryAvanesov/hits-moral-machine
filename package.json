@@ -8,6 +8,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "yarn run eslint src",
+    "format": "npx prettier --write src",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -46,7 +47,8 @@
     "@typescript-eslint/parser": "^4.26.0",
     "eslint": "^7.27.0",
     "eslint-plugin-react": "^7.24.0",
-    "husky": "^6.0.0"
+    "husky": "^6.0.0",
+    "prettier": "2.3.1"
   },
   "eslintConfig": {
     "extends": "react-app"

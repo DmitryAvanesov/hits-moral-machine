@@ -7,7 +7,7 @@ import { Home } from "./features/home/page/Home/Home";
 import { config } from "dotenv";
 import { TestPage } from "./features/test/pages/TestPage";
 
-function App() {
+function App(): JSX.Element {
   useEffect(() => {
     config();
   }, []);
