@@ -11,6 +11,7 @@ import { Solution } from "../interfaces/solution";
 const useStyles = makeStyles({
   root: {
     width: "40%",
+    height: "fit-content",
     cursor: "pointer",
     marginBottom: "24px",
     ["@media (max-width: 550px)"]: {

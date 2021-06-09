@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     width: "75%",
     padding: "64px 0",
     ["@media (max-width: 992px)"]: {
-      width: "95%",
+      width: "90%",
       padding: "32px 0",
     },
   },

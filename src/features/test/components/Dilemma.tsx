@@ -9,12 +9,15 @@ import { Dilemma } from "../interfaces/dilemma";
 
 const useStyles = makeStyles({
   root: {
-    display: "flex",
-    alignItems: "center",
     marginBottom: "32px",
+    minHeight: "100px",
+  },
+  text: {
+    textAlign: "justify",
   },
   progressBlock: {
     marginRight: "24px",
+    float: "left",
   },
 });
 
@@ -36,7 +39,7 @@ export const DilemmaBlock = (props: {
           value={Math.floor(
             (props.currentDilemma / props.dilemmas.length) * 100
           )}
-          size={75}
+          size={100}
         />
         <Box
           top={0}
@@ -53,7 +56,7 @@ export const DilemmaBlock = (props: {
           </Typography>
         </Box>
       </Box>
-      <Typography variant="h6">
+      <Typography className={classes.text} variant="h6">
         {props.dilemmas[props.currentDilemma]?.text ||
           "Благодарим за прохождение теста"}
       </Typography>
