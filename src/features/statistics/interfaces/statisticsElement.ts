@@ -1,4 +1,4 @@
 export interface StatisticsElement {
-    date: string;
-    rate: number;
+  date: string;
+  rate: number;
 }

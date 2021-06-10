@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { testApi } from "../api/testApi";
 import { Dilemma } from "../interfaces/dilemma";
 import { Solution } from "../interfaces/solution";
@@ -23,7 +23,13 @@ export const fetchTest = createAsyncThunk("test/fetchTest", async () => {
 export const testSlice = createSlice({
   name: "test",
   initialState,
-  reducers: {},
+  reducers: {
+    setImage(state, action: PayloadAction<Solution>) {
+      state.solutions = state.solutions.map((solution) =>
+        solution.id === action.payload.id ? action.payload : solution
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTest.pending, (state) => {
@@ -37,4 +43,5 @@ export const testSlice = createSlice({
   },
 });
 
+export const { setImage } = testSlice.actions;
 export default testSlice.reducer;
