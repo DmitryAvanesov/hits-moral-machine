@@ -34,7 +34,6 @@ export const StatsChart: FC<StatsChartState> = (props) => {
 
   const transformChartData = () => {
     const tempChartData = { ...initialChartData };
-    console.log(tempChartData);
     props.data.forEach((el) => {
       tempChartData.labels?.push(el.date);
       tempChartData.datasets[0].data.push(el.rate);

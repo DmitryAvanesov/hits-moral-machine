@@ -10,7 +10,7 @@ import {
   selectSolutions,
   selectTestLoading,
 } from "../store/testSelects";
-import { fetchTest } from "../store/testSlice";
+import { fetchTest, setImage } from "../store/testSlice";
 
 const useStyles = makeStyles({
   root: {
@@ -49,6 +49,19 @@ export const TestPage = (): JSX.Element => {
   useEffect(() => {
     dispatch(fetchTest());
   }, []);
+
+  useEffect(() => {
+    const fetchSolutionImages = async () => {
+      for (const solution of solutions) {
+        if (!solution.image) {
+          const image = await testApi.fetchSolutionImage(solution.id);
+          dispatch(setImage({ ...solution, image }));
+        }
+      }
+    };
+
+    fetchSolutionImages();
+  }, [solutions.every((solution) => solution.image)]);
 
   useEffect(() => {
     const pushAnswers = async () => {

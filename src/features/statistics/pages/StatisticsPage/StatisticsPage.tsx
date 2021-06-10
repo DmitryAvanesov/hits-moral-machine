@@ -42,7 +42,6 @@ export const StatisticsPage = (): JSX.Element => {
     const tempStats = stats.filter(
       (el) => new Date(el.date) >= fromDate && new Date(el.date) <= toDate
     );
-    console.log(stats.map((el) => ({ ...el, date: new Date(el.date) })));
     setFilteredStats(tempStats);
   };
 

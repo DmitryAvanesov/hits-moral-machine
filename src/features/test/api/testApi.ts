@@ -8,6 +8,19 @@ export const testApi = {
 
     return test.json();
   },
+  async fetchSolutionImage(id: string): Promise<string> {
+    const solutionImage = await fetch(
+      `${process.env.REACT_APP_API}/solution-image/${id}`,
+      {
+        method: "GET",
+      }
+    );
+
+    const blob = await solutionImage.blob();
+    const uri = URL.createObjectURL(blob);
+
+    return uri;
+  },
   async pushAnswers(answers: string[]): Promise<boolean> {
     const res = await fetch(`${process.env.REACT_APP_API}/answers`, {
       method: "POST",

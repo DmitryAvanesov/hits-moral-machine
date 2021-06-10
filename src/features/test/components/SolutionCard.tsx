@@ -38,15 +38,11 @@ export const SolutionCard = (props: {
     >
       <CardMedia
         className={classes.media}
-        image="https://image.freepik.com/free-photo/doctor-with-syringe-injection-in-hospital-professional-medicine-health-clinic-practitioner_92397-789.jpg"
+        image={props.solution.image}
         title={props.solution.text}
       />
       <CardContent>
-        <Typography variant="body1">
-          {props.solution?.text}: Нужно спасти женщину, так как она уже является
-          членом общества, у которого есть социальные связи, близкие люди.
-          Общество получит большую пользу от ее спасения.
-        </Typography>
+        <Typography variant="body1">{props.solution?.text}</Typography>
       </CardContent>
     </Card>
   );
