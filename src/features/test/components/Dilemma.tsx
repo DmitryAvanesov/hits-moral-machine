@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     textAlign: "justify",
   },
   progressBlock: {
-    marginRight: "24px",
+    marginRight: "32px",
     float: "left",
   },
 });

@@ -14,6 +14,10 @@ const useStyles = makeStyles({
     height: "fit-content",
     cursor: "pointer",
     marginBottom: "24px",
+    transition: "transform 1s",
+    "&:hover": {
+      transform: "scale(1.025)",
+    },
     ["@media (max-width: 550px)"]: {
       width: "100%",
     },
