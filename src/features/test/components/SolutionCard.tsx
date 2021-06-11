@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     height: "fit-content",
     cursor: "pointer",
     marginBottom: "24px",
-    transition: "transform 1s",
+    transition: "transform 0.5s",
     "&:hover": {
       transform: "scale(1.025)",
     },
