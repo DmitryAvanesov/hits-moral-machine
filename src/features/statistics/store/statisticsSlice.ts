@@ -45,7 +45,7 @@ export const statisticsSlice = createSlice({
         state.statsLoading = false;
         state.stats = payload.map((el) => ({
           ...el,
-          date: new Date(el.date).toLocaleDateString(),
+          date: new Date(el.date).toDateString(),
         }));
       });
   },
