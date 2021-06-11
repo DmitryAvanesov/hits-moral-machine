@@ -64,6 +64,23 @@ export const StatisticsPage = (): JSX.Element => {
           Статистика
         </Typography>
       </section>
+      <section className="description">
+        <Typography variant="body1" component="div">
+          Данный график показывает данные, как в течение заданного промежутка времени изменялись ответы россиян на приведенные в тесте вопросы.
+        </Typography>
+        <br/>
+        <Typography variant="body1" component="div">
+          Каждый ответ имеет определенное значение Rate, которое определила команда разработчиков теста. Оно может быть от -1 до 1, где -1 - ответ, являющийся наиболее близким к понятию авторитарной этики, а 1 - наиболее близким к гуманистической этике.
+        </Typography>
+        <br/>
+        <Typography variant="body1" component="div">
+          Значение Rate для определенной даты подсчитыввается, как среднее арифмитическое всех ответов, данных за последние 5 дней.
+        </Typography>
+        <br/>
+        <Typography variant="body1" component="div">
+          Ниже можете выбрать диапазон дат, в котором вам будет удобно посмотреть статистику
+        </Typography>
+      </section>
       <section className="date-range">
         <DateFilter
           fromDate={fromDate}
